@@ -5,13 +5,16 @@ import java.time.LocalDate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -54,11 +57,12 @@ public class user {
 	@Column(insertable = false, nullable = false)
 	private LocalDate updatedDate;
 
-	public enum Role {
-		ADMIN("ADMIN"), HR_MANAGER("HR_MANAGER"), MANAGER("MANAGER"), EMPLOYEE("EMPLOYEE");
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	private Employee employee;
 
-		Role(String string) {
-		}
+	public enum Role {
+		ADMIN, HR_MANAGER, MANAGER, EMPLOYEE
+
 	}
 
 	public Long getId() {
@@ -127,6 +131,14 @@ public class user {
 
 	public void setUpdatedDate(LocalDate updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public user(Long id,
