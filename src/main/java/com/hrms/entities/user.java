@@ -57,9 +57,6 @@ public class user {
 	@Column(insertable = false, nullable = false)
 	private LocalDate updatedDate;
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	private Employee employee;
-
 	public enum Role {
 		ADMIN, HR_MANAGER, MANAGER, EMPLOYEE
 
@@ -133,14 +130,6 @@ public class user {
 		this.updatedDate = updatedDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
 	public user(Long id,
 			@NotBlank(message = "username is required") @Size(min = 3, max = 50, message = "username must be between 3 to 50 characters") String username,
 			@NotBlank(message = "email is required") @Email(message = "Email should be valid") @Size(max = 100, message = "Email size should be exceed 100 characters") String email,
@@ -158,11 +147,8 @@ public class user {
 		this.updatedDate = updatedDate;
 	}
 
-	@Override
-	public String toString() {
-		return "user [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", role="
-				+ role + ", isactive=" + isactive + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate
-				+ "]";
+	public user() {
+		super();
 	}
 
 }
