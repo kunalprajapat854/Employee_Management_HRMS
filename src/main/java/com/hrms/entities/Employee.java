@@ -3,10 +3,16 @@ package com.hrms.entities;
 import java.sql.Date;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.hrms.enums.common.EmployementType;
+import com.hrms.enums.common.Gender;
+import com.hrms.enums.common.Marital;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,6 +22,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -24,19 +32,22 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString
 @Table(name = "employees")
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotNull(message = "user is required")
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	private user user;
 
 	@Column(name = "employee_id", nullable = false, unique = true, length = 20)
 	private String employeeId;
@@ -102,7 +113,7 @@ public class Employee {
 
 	@Column(name = "employee_status", nullable = false, length = 25)
 	@Enumerated(EnumType.STRING)
-	private EmployeeStatus employementStatus;
+	private EmployementType employementStatus;
 
 	@NotBlank(message = "Employement type is required")
 	@Enumerated(EnumType.STRING)
@@ -128,44 +139,21 @@ public class Employee {
 	@Column(name = "update_date", insertable = false)
 	private LocalDate updatedAt;
 
-	public enum EmployementType {
-		FULL_TIME, PART_TIME, CONTRACT, INTERN
+	// association mapping one to one with user
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false, unique = true)
+	private user user;
 
-	}
+	// mapping with department table with many to one
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "department_id")
+	private Department department;
 
-	public enum Gender {
-		MALE, FEMALE, OTHER
-	}
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<EmployeePosition> employeePositions = new ArrayList<>();
 
-	public enum Marital {
-		SINGLE, MARRIED, DIVORCED, WIDOWED
-	}
-
-	public enum EmployeeStatus {
-		ACTIVE, INACTIVE, TERMINATED
-
-	}
-	
-	
-	public Employee() {
-		super();
-	}
-
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", user=" + user + ", employeeId=" + employeeId + ", firstName=" + firstName
-				+ ", middleName=" + middleName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", gender="
-				+ gender + ", maritalStatus=" + maritalStatus + ", nationality=" + nationality + ", personalEmail="
-				+ personalEmail + ", workEmail=" + workEmail + ", phoneNumber=" + phoneNumber
-				+ ", emergencyContactNumber=" + emergencyContactNumber + ", currentAddress=" + currentAddress
-				+ ", permanentAddress=" + permanentAddress + ", hireDate=" + hireDate + ", confirmationDate="
-				+ confirmationDate + ", employementStatus=" + employementStatus + ", employementType=" + employementType
-				+ ", probationEndDate=" + probationEndDate + ", terminationDate=" + terminationDate
-				+ ", terminationReason=" + terminationReason + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-				+ "]";
-	}
-	
-	
+	// One Employee -> Many Attendence
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Attendence> attendences = new ArrayList<>();
 
 }

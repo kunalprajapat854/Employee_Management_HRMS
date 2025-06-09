@@ -21,11 +21,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "position")
 public class Position {
 	@Id
@@ -71,88 +76,13 @@ public class Position {
 		JUNIOR, SENIOR, LEAD, MANAGER, DIRECTOR
 	}
 
-	public Integer getId() {
-		return id;
-	}
+	// One Position -> Many EmployeePosition
+	@OneToMany(mappedBy = "position", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<EmployeePosition> employeePositions = new ArrayList<>();
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Level getLevel() {
-		return level;
-	}
-
-	public void setLevel(Level level) {
-		this.level = level;
-	}
-
-	public String getMinSalary() {
-		return minSalary;
-	}
-
-	public void setMinSalary(String minSalary) {
-		this.minSalary = minSalary;
-	}
-
-	public String getMaxSalary() {
-		return maxSalary;
-	}
-
-	public void setMaxSalary(String maxSalary) {
-		this.maxSalary = maxSalary;
-	}
-
-	public String getRequiredSkill() {
-		return requiredSkill;
-	}
-
-	public void setRequiredSkill(String requiredSkill) {
-		this.requiredSkill = requiredSkill;
-	}
-
-	public boolean isIsactive() {
-		return isactive;
-	}
-
-	public void setIsactive(boolean isactive) {
-		this.isactive = isactive;
-	}
-
-	public LocalDate getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDate createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDate getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDate updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public Position() {
-		super();
-	}
+	// Many Positions -> One Department
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "department_id", nullable = false)
+	private Department department;
 
 }
