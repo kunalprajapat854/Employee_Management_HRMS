@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.hrms.enums.common.Role;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -61,14 +63,9 @@ public class user {
 	@UpdateTimestamp
 	@Column(insertable = false, nullable = false)
 	private LocalDate updatedDate;
-	
-	//association mapping with employee 
-	@OneToOne(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
-	private Employee employee ;
 
-	public enum Role {
-		ADMIN, HR_MANAGER, MANAGER, EMPLOYEE
-
-	}
+	// association mapping with employee
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Employee employee;
 
 }

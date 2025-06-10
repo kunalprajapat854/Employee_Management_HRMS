@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.hrms.enums.common.Status;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -64,10 +66,6 @@ public class Attendence {
 	@UpdateTimestamp
 	@Column(name = "updated_date", insertable = false)
 	private LocalDate updatedAt;
-
-	private enum Status {
-		PRESENT, ABSENT, HALF_DAY, LATE, EARLY_DEPARTURE
-	}
 
 	// Many Attendance records -> One Employee
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

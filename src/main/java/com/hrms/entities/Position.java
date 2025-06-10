@@ -1,11 +1,14 @@
 package com.hrms.entities;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.hrms.enums.common.Levels;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,7 +51,7 @@ public class Position {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "level", nullable = false)
-	private Level level;
+	private Levels level;
 
 	@Pattern(regexp = "^\\\\d+(\\\\.\\\\d{1,2})?$", message = "Mininum salary must be valid number")
 	@Column(name = "min_salary")
@@ -71,10 +74,6 @@ public class Position {
 	@UpdateTimestamp
 	@Column(name = "update_date", insertable = false)
 	private LocalDate updatedAt;
-
-	public enum Level {
-		JUNIOR, SENIOR, LEAD, MANAGER, DIRECTOR
-	}
 
 	// One Position -> Many EmployeePosition
 	@OneToMany(mappedBy = "position", orphanRemoval = true, cascade = CascadeType.ALL)
