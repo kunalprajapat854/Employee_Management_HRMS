@@ -156,4 +156,12 @@ public class Employee {
 	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Attendence> attendences = new ArrayList<>();
 
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Work_Schedule> workscheduleList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Leave_Balances> leaveList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Leave_Application> leaveappList = new ArrayList<>();
 }
