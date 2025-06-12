@@ -170,4 +170,7 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Payroll_Records> payrolllist = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Goal> goalsList = new ArrayList<>();
 }
