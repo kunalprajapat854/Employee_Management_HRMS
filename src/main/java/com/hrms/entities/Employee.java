@@ -173,4 +173,22 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Goal> goalsList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "createdBy", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PerformanceCycle> performanceList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PerformanceReview> reviews = new ArrayList<>();
+
+	@OneToMany(mappedBy = "reviewer", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PerformanceReview> performanceReviews = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<TrainingEnrollment> enrollments = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<EmployeeSkill> employeeSkills = new ArrayList<>();
+
+	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<EmployeeDocument> documents = new ArrayList<>();
 }
