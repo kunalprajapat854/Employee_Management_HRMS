@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.aspectj.weaver.ast.Not;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -191,4 +193,13 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<EmployeeDocument> documents = new ArrayList<>();
+
+	@OneToMany(mappedBy = "recipient", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Notification> notifications = new ArrayList<>();
+
+	@OneToMany(mappedBy = "sender", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Notification> allnotlist = new ArrayList<>();
+
+	@OneToMany(mappedBy = "relatedEmployee", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Notification> list = new ArrayList<>();
 }

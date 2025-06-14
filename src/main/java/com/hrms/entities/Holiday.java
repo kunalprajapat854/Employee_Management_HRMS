@@ -23,7 +23,7 @@ public class Holiday {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@Column(name = "holiday_name", nullable = false)
 	private String name;

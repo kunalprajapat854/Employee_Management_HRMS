@@ -29,7 +29,7 @@ public class Leave_Application {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@PastOrPresent(message = "start date must be past or present")
 	@Column(name = "start_date", nullable = false)

@@ -30,7 +30,7 @@ public class Payroll_Records {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotBlank(message = "Payment period start must be required")
 	@Column(name = "pay_period_start", nullable = false)

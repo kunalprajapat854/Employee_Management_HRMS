@@ -31,7 +31,7 @@ import jakarta.validation.constraints.PastOrPresent;
 public class Attendence {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotNull(message = "Date must be required")
 	@PastOrPresent(message = "Date must be past or present required")

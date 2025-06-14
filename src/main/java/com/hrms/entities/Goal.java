@@ -33,7 +33,7 @@ public class Goal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@Column(name = "goal_title", nullable = false)
 	private String title;

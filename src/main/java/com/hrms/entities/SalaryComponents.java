@@ -26,7 +26,7 @@ public class SalaryComponents {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	@Column(name = "salary_name")
 	private Salaryname salary;
 
