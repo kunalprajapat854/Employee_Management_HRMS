@@ -8,4 +8,6 @@ import com.hrms.entities.user;
 @Repository
 public interface UserRepository extends JpaRepository<user, Long> {
 
+	public user findByUsername(String username);
+
 }
