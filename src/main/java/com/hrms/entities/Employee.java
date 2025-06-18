@@ -52,7 +52,7 @@ public class Employee {
 	private Long id;
 
 	@Column(name = "employee_id", nullable = false, unique = true, length = 20)
-	private String employeeId;
+	private Long employeeId;
 
 	@NotBlank(message = "first name must be required")
 	@Column(name = "first_name", length = 55, nullable = false, unique = true)
@@ -202,4 +202,350 @@ public class Employee {
 
 	@OneToMany(mappedBy = "relatedEmployee", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Notification> list = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Marital getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(Marital maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public String getPersonalEmail() {
+		return personalEmail;
+	}
+
+	public void setPersonalEmail(String personalEmail) {
+		this.personalEmail = personalEmail;
+	}
+
+	public String getWorkEmail() {
+		return workEmail;
+	}
+
+	public void setWorkEmail(String workEmail) {
+		this.workEmail = workEmail;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmergencyContactNumber() {
+		return emergencyContactNumber;
+	}
+
+	public void setEmergencyContactNumber(String emergencyContactNumber) {
+		this.emergencyContactNumber = emergencyContactNumber;
+	}
+
+	public String getCurrentAddress() {
+		return currentAddress;
+	}
+
+	public void setCurrentAddress(String currentAddress) {
+		this.currentAddress = currentAddress;
+	}
+
+	public String getPermanentAddress() {
+		return permanentAddress;
+	}
+
+	public void setPermanentAddress(String permanentAddress) {
+		this.permanentAddress = permanentAddress;
+	}
+
+	public Date getHireDate() {
+		return hireDate;
+	}
+
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
+
+	public Date getConfirmationDate() {
+		return confirmationDate;
+	}
+
+	public void setConfirmationDate(Date confirmationDate) {
+		this.confirmationDate = confirmationDate;
+	}
+
+	public EmployementType getEmployementStatus() {
+		return employementStatus;
+	}
+
+	public void setEmployementStatus(EmployementType employementStatus) {
+		this.employementStatus = employementStatus;
+	}
+
+	public EmployementType getEmployementType() {
+		return employementType;
+	}
+
+	public void setEmployementType(EmployementType employementType) {
+		this.employementType = employementType;
+	}
+
+	public Date getProbationEndDate() {
+		return probationEndDate;
+	}
+
+	public void setProbationEndDate(Date probationEndDate) {
+		this.probationEndDate = probationEndDate;
+	}
+
+	public Date getTerminationDate() {
+		return terminationDate;
+	}
+
+	public void setTerminationDate(Date terminationDate) {
+		this.terminationDate = terminationDate;
+	}
+
+	public String getTerminationReason() {
+		return terminationReason;
+	}
+
+	public void setTerminationReason(String terminationReason) {
+		this.terminationReason = terminationReason;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public user getUser() {
+		return user;
+	}
+
+	public void setUser(user user) {
+		this.user = user;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public List<EmployeePosition> getEmployeePositions() {
+		return employeePositions;
+	}
+
+	public void setEmployeePositions(List<EmployeePosition> employeePositions) {
+		this.employeePositions = employeePositions;
+	}
+
+	public List<Attendence> getAttendences() {
+		return attendences;
+	}
+
+	public void setAttendences(List<Attendence> attendences) {
+		this.attendences = attendences;
+	}
+
+	public List<Work_Schedule> getWorkscheduleList() {
+		return workscheduleList;
+	}
+
+	public void setWorkscheduleList(List<Work_Schedule> workscheduleList) {
+		this.workscheduleList = workscheduleList;
+	}
+
+	public List<Leave_Balances> getLeaveList() {
+		return leaveList;
+	}
+
+	public void setLeaveList(List<Leave_Balances> leaveList) {
+		this.leaveList = leaveList;
+	}
+
+	public List<Leave_Application> getLeaveappList() {
+		return leaveappList;
+	}
+
+	public void setLeaveappList(List<Leave_Application> leaveappList) {
+		this.leaveappList = leaveappList;
+	}
+
+	public List<EmployeeSalary> getEmployeeSalaryList() {
+		return employeeSalaryList;
+	}
+
+	public void setEmployeeSalaryList(List<EmployeeSalary> employeeSalaryList) {
+		this.employeeSalaryList = employeeSalaryList;
+	}
+
+	public List<Payroll_Records> getPayrolllist() {
+		return payrolllist;
+	}
+
+	public void setPayrolllist(List<Payroll_Records> payrolllist) {
+		this.payrolllist = payrolllist;
+	}
+
+	public List<Goal> getGoalsList() {
+		return goalsList;
+	}
+
+	public void setGoalsList(List<Goal> goalsList) {
+		this.goalsList = goalsList;
+	}
+
+	public List<PerformanceCycle> getPerformanceList() {
+		return performanceList;
+	}
+
+	public void setPerformanceList(List<PerformanceCycle> performanceList) {
+		this.performanceList = performanceList;
+	}
+
+	public List<PerformanceReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<PerformanceReview> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<PerformanceReview> getPerformanceReviews() {
+		return performanceReviews;
+	}
+
+	public void setPerformanceReviews(List<PerformanceReview> performanceReviews) {
+		this.performanceReviews = performanceReviews;
+	}
+
+	public List<TrainingEnrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(List<TrainingEnrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
+
+	public List<EmployeeSkill> getEmployeeSkills() {
+		return employeeSkills;
+	}
+
+	public void setEmployeeSkills(List<EmployeeSkill> employeeSkills) {
+		this.employeeSkills = employeeSkills;
+	}
+
+	public List<EmployeeDocument> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<EmployeeDocument> documents) {
+		this.documents = documents;
+	}
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
+	public List<Notification> getAllnotlist() {
+		return allnotlist;
+	}
+
+	public void setAllnotlist(List<Notification> allnotlist) {
+		this.allnotlist = allnotlist;
+	}
+
+	public List<Notification> getList() {
+		return list;
+	}
+
+	public void setList(List<Notification> list) {
+		this.list = list;
+
+	}
+
+	public Long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
+	}
+
 }
