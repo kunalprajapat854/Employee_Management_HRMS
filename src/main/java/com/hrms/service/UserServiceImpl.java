@@ -1,9 +1,9 @@
 package com.hrms.service;
 
 import java.util.List;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hrms.entities.user;
@@ -13,20 +13,12 @@ import com.hrms.repository.core.UserRepository;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private BCryptPasswordEncoder passEncoder;
-
 	private UserRepository repository;
-
-	public UserServiceImpl(BCryptPasswordEncoder passEncoder, UserRepository repository) {
-		super();
-		this.passEncoder = passEncoder;
-		this.repository = repository;
-	}
 
 	@Override
 	public void authenticate(String username, String passoword) {
 		user byUsername = repository.findByUsername(username);
-		if (!passEncoder.matches(passoword, byUsername.getPassword())) {
+		if (!passoword.equals(byUsername.getPassword())) {
 			throw new RuntimeException("Invalid Password");
 		}
 		System.out.println("Authenticated " + username);
