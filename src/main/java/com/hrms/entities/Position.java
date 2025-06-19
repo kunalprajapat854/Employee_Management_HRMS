@@ -38,7 +38,7 @@ import lombok.Setter;
 public class Position {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotBlank(message = "Title is required")
 	@Column(name = "job_title", nullable = false)
@@ -55,11 +55,11 @@ public class Position {
 
 	@Pattern(regexp = "^\\\\d+(\\\\.\\\\d{1,2})?$", message = "Mininum salary must be valid number")
 	@Column(name = "min_salary")
-	private String minSalary;
+	private Double minSalary;
 
 	@Pattern(regexp = "^\\\\d+(\\\\.\\\\d{1,2})?$", message = "Maximum salary must be valid number")
 	@Column(name = "max_salary")
-	private String maxSalary;
+	private Double maxSalary;
 
 	@Column(name = "required_skill", nullable = false)
 	private String requiredSkill;
@@ -83,5 +83,101 @@ public class Position {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Levels getLevel() {
+		return level;
+	}
+
+	public void setLevel(Levels level) {
+		this.level = level;
+	}
+
+	public String getRequiredSkill() {
+		return requiredSkill;
+	}
+
+	public void setRequiredSkill(String requiredSkill) {
+		this.requiredSkill = requiredSkill;
+	}
+
+	public boolean isIsactive() {
+		return isactive;
+	}
+
+	public void setIsactive(boolean isactive) {
+		this.isactive = isactive;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<EmployeePosition> getEmployeePositions() {
+		return employeePositions;
+	}
+
+	public void setEmployeePositions(List<EmployeePosition> employeePositions) {
+		this.employeePositions = employeePositions;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Double getMinSalary() {
+		return minSalary;
+	}
+
+	public void setMinSalary(Double minSalary) {
+		this.minSalary = minSalary;
+	}
+
+	public Double getMaxSalary() {
+		return maxSalary;
+	}
+
+	public void setMaxSalary(Double maxSalary) {
+		this.maxSalary = maxSalary;
+	}
 
 }
