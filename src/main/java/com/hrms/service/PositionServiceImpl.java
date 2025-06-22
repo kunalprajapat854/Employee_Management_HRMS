@@ -13,7 +13,6 @@ public class PositionServiceImpl implements PositionService {
 	private PositionRepository positionRepository;
 
 	public PositionServiceImpl(PositionRepository positionRepository) {
-		super();
 		this.positionRepository = positionRepository;
 	}
 

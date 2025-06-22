@@ -38,7 +38,7 @@ public class DepartmentServiceImple implements DepartmentService {
 			employee.setDepartment(department);
 			employeeRepository.save(employee);
 		} else {
-			throw new RuntimeException("Invalid employeeId and departmentId");
+			throw new RuntimeException("Invalid employeeId and departmentIdw");
 		}
 
 	}
