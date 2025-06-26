@@ -72,4 +72,114 @@ public class Attendence {
 	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
 
+	@Column(name = "check_in_time")
+	private LocalDateTime checkInTime;
+
+	@Column(name = "check_out_time")
+	private LocalDateTime checkOutTime;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalDateTime getBreakStartTime() {
+		return breakStartTime;
+	}
+
+	public void setBreakStartTime(LocalDateTime breakStartTime) {
+		this.breakStartTime = breakStartTime;
+	}
+
+	public LocalDateTime getBreakEndTime() {
+		return breakEndTime;
+	}
+
+	public void setBreakEndTime(LocalDateTime breakEndTime) {
+		this.breakEndTime = breakEndTime;
+	}
+
+	public BigDecimal getTotalHoursWork() {
+		return totalHoursWork;
+	}
+
+	public void setTotalHoursWork(BigDecimal totalHoursWork) {
+		this.totalHoursWork = totalHoursWork;
+	}
+
+	public BigDecimal getOverTimehours() {
+		return overTimehours;
+	}
+
+	public void setOverTimehours(BigDecimal overTimehours) {
+		this.overTimehours = overTimehours;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public LocalDateTime getCheckInTime() {
+		return checkInTime;
+	}
+
+	public void setCheckInTime(LocalDateTime checkInTime) {
+		this.checkInTime = checkInTime;
+	}
+
+	public LocalDateTime getCheckOutTime() {
+		return checkOutTime;
+	}
+
+	public void setCheckOutTime(LocalDateTime checkOutTime) {
+		this.checkOutTime = checkOutTime;
+	}
+
 }
